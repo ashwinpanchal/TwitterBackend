@@ -1,4 +1,4 @@
-const Tweet = require("../models/tweet");
+const { Tweet } = require("../models/index");
 
 class TweetRepository {
   async createTweet(data) {
@@ -24,16 +24,6 @@ class TweetRepository {
   async getByIdWithComments(tweetId) {
     try {
       const tweet = await Tweet.findById(tweetId).populate("comments").lean();
-      return tweet;
-    } catch (error) {
-      console.log("Something went wrong at repository level");
-      throw { error };
-    }
-  }
-
-  async updateTweet(tweetId, data) {
-    try {
-      const tweet = await Tweet.findByIdAndUpdate(tweetId, data, { new: true });
       return tweet;
     } catch (error) {
       console.log("Something went wrong at repository level");

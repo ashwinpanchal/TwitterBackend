@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+const { MONGODB_URL } = require("./serverConfig");
 
 const connect = async () => {
-  await mongoose.connect("mongodb://localhost:27017", {
+  await mongoose.connect(MONGODB_URL, {
     dbName: "twitter_dev",
   });
   console.log("MongoDb Connected");
