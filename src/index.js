@@ -13,9 +13,6 @@ const setupAndStartServer = async () => {
     console.log("Server started on PORT", PORT);
     await connect();
     const tweetRepo = new TweetRepository();
-
-    const tweet = await tweetRepo.getAll(0, 5);
-    console.log(tweet[4].contentWithEmail);
   });
 };
 
