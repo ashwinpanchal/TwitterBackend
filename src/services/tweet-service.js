@@ -9,7 +9,9 @@ class TweetService {
   async createTweet(data) {
     try {
       const content = data.content;
-      const hashtags = content.match(/#(\w+)/g).map((tag) => tag.slice(1));
+      const hashtags = content
+        .match(/#(\w+)/g)
+        .map((tag) => tag.slice(1).toLowerCase());
       const tweet = await this.tweetRepository.createTweet(data);
       let alreadyPresentTags = await this.hashtagRepository.getByName(hashtags);
       const titleAlreadyPresentTags = alreadyPresentTags.map(
@@ -29,9 +31,9 @@ class TweetService {
         tag.tweets.push(tweet.id);
         tag.save();
       });
-      let tagIds = [...alreadyPresentTags, ...createdTags].map((tag) => tag.id);
-      tweet.hashtags = [...tweet.hashtags, ...tagIds];
-      await tweet.save();
+      // let tagIds = [...alreadyPresentTags, ...createdTags].map((tag) => tag.id);
+      // tweet.hashtags = [...tweet.hashtags, ...tagIds];
+      // await tweet.save();
       return tweet;
     } catch (error) {
       console.log("Something went wrong at the service layer");

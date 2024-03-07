@@ -7,12 +7,12 @@ const tweetSchema = new Schema(
       required: true,
       max: [250, "Tweets cannot be more than 250 characters"],
     },
-    hashtags: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Hashtag",
-      },
-    ],
+    // hashtags: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Hashtag",
+    //   },
+    // ],
   },
   { timestamps: true }
 );
