@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
 
-const connect = require("./config/dbConfig");
-const { PORT } = require("./config/serverConfig");
+import connect from "./config/dbConfig.js";
+import { PORT } from "./config/serverConfig.js";
 
 const setupAndStartServer = async () => {
   const app = express();
