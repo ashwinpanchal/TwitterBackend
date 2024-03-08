@@ -21,6 +21,17 @@ class TweetRepository {
     }
   }
 
+  async getByIdWithLikes(tweetId) {
+    try {
+      const tweet = await Tweet.findById(tweetId).populate({ path: "likes" });
+      console.log(tweet);
+      return tweet;
+    } catch (error) {
+      console.log("Something went wrong at repository level");
+      throw { error };
+    }
+  }
+
   async getByIdWithComments(tweetId) {
     try {
       const tweet = await Tweet.findById(tweetId).populate("comments").lean();

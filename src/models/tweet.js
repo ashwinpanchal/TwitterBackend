@@ -7,6 +7,7 @@ const tweetSchema = new Schema(
       required: true,
       max: [250, "Tweets cannot be more than 250 characters"],
     },
+    likes: [{ type: Schema.Types.ObjectId, ref: "Like" }],
     // hashtags: [
     //   {
     //     type: Schema.Types.ObjectId,
