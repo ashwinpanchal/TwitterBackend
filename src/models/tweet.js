@@ -14,6 +14,7 @@ const tweetSchema = new Schema(
     //     ref: "Hashtag",
     //   },
     // ],
+    comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   },
   { timestamps: true }
 );
