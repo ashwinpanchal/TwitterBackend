@@ -6,10 +6,22 @@ const commentSchema = new Schema(
       type: String,
       required: true,
     },
-    userEmail: {
-      type: String,
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
+    onModel: {
+      type: String,
+      required: true,
+      enum: ["Tweet", "Comment"],
+    },
+    commentable: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      refPath: "onModel",
+    },
+    likes: [{ type: Schema.Types.ObjectId, ref: "Like" }],
   },
   { timestamps: true }
 );
