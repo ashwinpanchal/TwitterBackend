@@ -40,6 +40,16 @@ class TweetService {
       throw { error };
     }
   }
+
+  async getTweet(tweetId) {
+    try {
+      const tweet = this.tweetRepository.getByIdDeepPopulated(tweetId);
+      return tweet;
+    } catch (error) {
+      console.log("Something went wrong at the service layer");
+      throw { error };
+    }
+  }
 }
 
 export default TweetService;

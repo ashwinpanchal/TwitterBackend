@@ -9,6 +9,7 @@ import {
 const router = Router();
 
 router.post("/tweets", TweetController.createTweet);
+router.get("/tweets/:id", TweetController.get);
 
 router.post("/likes/toggle", LikeController.toggleLike);
 

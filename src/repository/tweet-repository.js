@@ -33,7 +33,22 @@ class TweetRepository {
 
   async getByIdWithComments(tweetId) {
     try {
-      const tweet = await Tweet.findById(tweetId).populate("comments").lean();
+      const tweet = await Tweet.findById(tweetId).populate({
+        path: "comments",
+      });
+      return tweet;
+    } catch (error) {
+      console.log("Something went wrong at repository level");
+      throw { error };
+    }
+  }
+
+  async getByIdDeepPopulated(tweetId) {
+    try {
+      const tweet = await Tweet.findById(tweetId).populate({
+        path: "comments",
+        populate: { path: "comments" }, // only populate to two stages
+      });
       return tweet;
     } catch (error) {
       console.log("Something went wrong at repository level");
