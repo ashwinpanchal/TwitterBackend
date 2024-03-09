@@ -4,6 +4,7 @@ import {
   TweetController,
   LikeController,
   CommentController,
+  UserController,
 } from "../../controllers/index.js";
 
 const router = Router();
@@ -14,5 +15,7 @@ router.get("/tweets/:id", TweetController.get);
 router.post("/likes/toggle", LikeController.toggleLike);
 
 router.post("/comments", CommentController.createComment);
+
+router.post("/signup", UserController.signup);
 
 export default router;
