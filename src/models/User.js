@@ -1,7 +1,8 @@
 import { Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-import { SALT } from "../config/serverConfig.js";
+import { SALT, SECRET_KEY } from "../config/serverConfig.js";
 
 const userSchema = new Schema(
   {
@@ -29,6 +30,16 @@ userSchema.pre("save", function (next) {
   user.password = encryptedPassword;
   next();
 });
+
+userSchema.methods.comparePassword = function compare(password) {
+  return bcrypt.compareSync(password, this.password);
+};
+
+userSchema.methods.genJWT = function generate() {
+  return jwt.sign({ id: this._id, userEmail: this.userEmail }, SECRET_KEY, {
+    expiresIn: "1h",
+  });
+};
 
 const User = model("User", userSchema);
 
