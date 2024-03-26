@@ -17,5 +17,6 @@ router.post("/likes/toggle", LikeController.toggleLike);
 router.post("/comments", CommentController.createComment);
 
 router.post("/signup", UserController.signup);
+router.post("/login", UserController.login);
 
 export default router;
