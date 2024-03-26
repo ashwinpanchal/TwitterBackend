@@ -9,10 +9,11 @@ const signup = async (req, res) => {
       password: req.body.password,
       userName: req.body.userName,
     });
+    const token = response.genJWT();
     return res.status(201).json({
       success: true,
       message: "Sucessfully created a user",
-      data: response,
+      data: { token },
       err: {},
     });
   } catch (error) {

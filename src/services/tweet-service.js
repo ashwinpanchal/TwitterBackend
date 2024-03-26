@@ -9,9 +9,15 @@ class TweetService {
   async createTweet(data) {
     try {
       const content = data.content;
-      const hashtags = content
-        .match(/#(\w+)/g)
-        .map((tag) => tag.slice(1).toLowerCase());
+      console.log(content);
+      // const hashtags = content
+      //   .match(/#(\w+)/g)
+      //   .map((tag) => tag.slice(1).toLowerCase());
+      let hashtags = content.match(/#(\w+)/g);
+      if (!hashtags) {
+        hashtags = [];
+      }
+      hashtags = hashtags.map((tag) => tag.slice(1).toLowerCase());
       const tweet = await this.tweetRepository.createTweet(data);
       let alreadyPresentTags = await this.hashtagRepository.getByName(hashtags);
       const titleAlreadyPresentTags = alreadyPresentTags.map(

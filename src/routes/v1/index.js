@@ -7,9 +7,11 @@ import {
   UserController,
 } from "../../controllers/index.js";
 
+import { authenticate } from "../../middlewares/authenticate.js";
+
 const router = Router();
 
-router.post("/tweets", TweetController.createTweet);
+router.post("/tweets", authenticate, TweetController.createTweet);
 router.get("/tweets/:id", TweetController.get);
 
 router.post("/likes/toggle", LikeController.toggleLike);
